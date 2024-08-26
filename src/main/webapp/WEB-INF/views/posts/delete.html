@@ -1,0 +1,49 @@
+<h4>Delete a posts</h4>
+<form th:action="@{/posts/delete}" th:object="${posts}" method="POST">
+    <input type="hidden" th:field="*{id}">
+    <table>
+        <tr>
+            <td>
+                <label>Title</label>
+            </td>
+            <td th:text="${posts.title}">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Content</label>
+            </td>
+            <td th:text="${posts.content}">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Description</label>
+            </td>
+            <td th:text="${posts.description}">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="category">Category</label>
+            </td>
+            <td>
+                <select id="category" th:field="*{category}" disabled>
+                    <option
+                            th:each="category : ${categoryList}"
+                            th:value="${category.id}"
+                            th:text="${category.name}"
+                            th:selected="${category.id == document.category.id}"
+                    >
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Delete">
+                <a th:href="@{/}">Back</a>
+            </td>
+        </tr>
+    </table>
+</form>

@@ -1,0 +1,44 @@
+<div th:fragment="posts-list">
+    <h3>Posts list</h3>
+    <a th:href="@{/posts/create}" >Create a posts</a>
+    <div th:include="/posts/search.html :: posts-search"></div>
+    <table>
+        <thead>
+        <tr>
+            <td>#</td>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Description</th>
+            <th colspan="3"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="posts,stat: ${postsList}">
+            <td th:text="${(postsList.number * 5 + stat.count)}"></td>
+            <td th:text="${posts.title}"></td>
+            <td th:text="${posts.content}"></td>
+            <td th:text="${posts.description}"></td>
+            <td>
+                <a th:href="@{/posts/{id}/update(id=${posts.id})}">Edit</a>
+            </td>
+            <td>
+                <a th:href="@{/posts/{id}/delete(id=${posts.id})}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <nav>
+        <ul class="pagination">
+            <li th:class="${postsList.hasPrevious()} ? 'page-item' : 'page-tiem disabled'">
+                <a th:href="@{/(query=${query})(page=${postsList.number - 1}, query=${query})}" th:class="'page-link'">&lt&lt</a>
+            </li>
+            <li th:each="page : ${#numbers.sequence(1, postsList.getTotalPages(), 1)}"
+                th:class="${page == (postsList.number + 1)}? 'page-item active' : 'page-item'">
+                <a th:class="'page-link'" th:text="${page}" th:href="@{/(page=${page - 1}, query=${query})}"></a>
+            </li>
+            <li th:class="${postsList.hasNext()} ? 'page-item' : 'page-item disabled'">
+                <a th:href="@{/(page=${postsList.number + 1}, query=${query})}" th:class="'page-link'">&gt&gt</a>
+            </li>
+        </ul>
+    </nav>
+</div>

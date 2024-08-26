@@ -1,0 +1,30 @@
+<div th:fragment="category-list">
+    <h3>Category list</h3>
+    <table>
+        <thead>
+        <tr>
+            <td>Name</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="category :${categoryList}">
+            <td th:text="${category.name}"></td>
+            <td>
+                <a th:href="@{/category/{id}/delete(id=${category.id})}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div th:fragment="category-static">
+    <h3>Statics: </h3>
+    <table>
+        <tbody>
+        <tr th:each="entry : ${categoryDocumentNumberList}">
+            <td th:text="${entry.name}"></td>
+            <td th:text="${entry.number}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

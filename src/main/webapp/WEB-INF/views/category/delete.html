@@ -1,0 +1,21 @@
+<form th:action="@{/category/delete}" method="POST" th:object="${category}">
+    <input type="hidden" th:field="*{id}">
+    <table>
+        <tbody>
+        <tr>
+            <td>Id</td>
+            <td th:text="${category.id}"></td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td th:text="${category.name}"></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Delete">
+                <a th:href="@{/}">Back</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>

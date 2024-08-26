@@ -1,0 +1,10 @@
+<div th:fragment="posts-search">
+    <form th:action="@{/}" method="GET">
+        <table>
+            <tr>
+                <td><input placeholder="Name" name="query" th:value="${query}"></td>
+                <td><input type="submit" value="Search"></td>
+            </tr>
+        </table>
+    </form>
+</div>
